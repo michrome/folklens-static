@@ -5,10 +5,15 @@
 <title>Test</title>
 </head>
 <body>
+Test
     <ul>
     {% for user in users %}
         <li>{{ user }}</li>
     {% endfor %}
     </ul>
+    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=600" />
+    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=200&h=200&fit=thumb&f=faces" />
+    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=200&h=200&fit=thumb&f=face" />
+    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=200&h=200&fit=thumb" />
 </body>
 </html>
