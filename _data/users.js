@@ -3,7 +3,7 @@ const fetchUserData = async username => {
   return username
 }
 
-module.exports = async function() {
+module.exports = async function () {
   const user1 = await fetchUserData('user1')
   const user2 = await fetchUserData('user2')
 

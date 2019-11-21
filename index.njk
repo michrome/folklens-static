@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=320, user-scalable=no" />
 <title>Test</title>
+<link rel="stylesheet" media="all" href="style.css" />
 </head>
 <body>
-Test
-    <ul>
-    {% for user in users %}
-        <li>{{ user }}</li>
+<div id="moments">
+    {% for photo in photos %}
+        <a href="#">
+            <img sizes="(min-width: 768px) 190px, (min-width: 640px) 158px, (min-width: 515px) 126px, (min-width: 414px) 101px, (min-width: 375px) 91px, 78px" srcset="https:{{ photo }}?w=300&h=300&fit=thumb&f=faces&q=40 300w" src="https:{{ photo }}?w=300&h=300&fit=thumb&f=faces&q=40" /></a>        
+        </a>
     {% endfor %}
-    </ul>
-    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=600" />
-    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=200&h=200&fit=thumb&f=faces" />
-    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=200&h=200&fit=thumb&f=face" />
-    <img style="border: 1px solid black" src="https:{{ photos.fields.image.fields.file.url }}?w=200&h=200&fit=thumb" />
+    </div>
 </body>
 </html>

@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  background-color: #f8f8ff;
+}
+a img {
+  border: none;
+}
+a:focus {
+  outline: 0;
+}
+#moments {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#moments a img {
+  vertical-align: bottom;
+  margin: 1px;
+}
+#photo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+#newer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 3%;
+  margin: auto;
+  padding: 12% 2% 12% 10%;
+}
+#older {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 3%;
+  margin: auto;
+  padding: 12% 10% 12% 2%;
+}
+#close {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 3%;
+  padding: 2% 10% 6% 2%;
+}
