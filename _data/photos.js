@@ -9,11 +9,13 @@ module.exports = async function () {
   await client
     .getEntries({
       content_type: 'photo',
-      order: '-fields.timeTaken'
+      order: '-fields.timeTaken',
+      limit: 250
     })
     .then(response => {
       const items = response.items
       console.log(items)
+
       photos = items.map(item => item.fields.image.fields.file.url)
       return photos
     })
