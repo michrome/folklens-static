@@ -14,8 +14,8 @@ module.exports = async function () {
     })
     .then(response => {
       const items = response.items
-      console.log(items)
-      console.log(JSON.stringify(items, null, 10));
+      // console.log(items)
+      // console.log(JSON.stringify(items, null, 10));
 
       photos = items.map(item => item.fields.image.fields.file.url)
       return photos
