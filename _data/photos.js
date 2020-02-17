@@ -4,8 +4,8 @@ const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
 })
 
-module.exports = async function () {
-  let photos = []
+module.exports = async function() {
+  let photoImageURLs = []
   await client
     .getEntries({
       content_type: 'photo',
@@ -13,13 +13,17 @@ module.exports = async function () {
       limit: 250
     })
     .then(response => {
-      const items = response.items
-      // console.log(items)
-      // console.log(JSON.stringify(items, null, 10));
-
-      photos = items.map(item => item.fields.image.fields.file.url)
-      return photos
+      const photos = response.items
+      const photosWithPublishedImage = photos.filter(
+        item =>
+          item.fields.image &&
+          item.fields.image.fields &&
+          item.fields.image.fields.file &&
+          item.fields.image.fields.file.url
+      )
+      photoImageURLs = photosWithPublishedImage.map(item => item.fields.image.fields.file.url)
+      return photoImageURLs
     })
     .catch(console.error)
-  return photos
+  return photoImageURLs
 }
