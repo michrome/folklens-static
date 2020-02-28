@@ -53,18 +53,34 @@
     border-spacing: 0;
   }
   /* End reset */
+
   ul {
     display: flex;
     flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  @media (min-aspect-ratio: 7 / 3) {
+    ul {
+      max-width: 150vh;
+    }
+  }
+
   ul::after {
     content: "";
     flex-grow: 10;
   }
 
   li {
-    height: 30vh;
+    height: 33vh;
     flex-grow: 1;
+  }
+
+  @media (min-aspect-ratio: 3 / 2) {
+    li {
+      height: 45vh;
+    }
   }
 
   img {
@@ -77,15 +93,10 @@
     vertical-align: bottom;
   }
 
-/*
-  @media (min-width: 768px) {
-    li {
-      height: 33vh;
-    }
+  body {
+    background-color: black;
   }
-*/
 
-}
   </style>
   <title>Test</title>
 </head>
@@ -93,29 +104,11 @@
   <ul>
     {% for photo in photos %}
       <li>
-        <img
-          srcset="https:{{ photo }}?w=400 400w,
-            https:{{ photo }}?w=800 800w,
-            https:{{ photo }}?w=900 900w,
-            https:{{ photo }}?w=1000 1000w,
-            https:{{ photo }}?w=1100 1100w,
-            https:{{ photo }}?w=1125 1125w,
-            https:{{ photo }}?w=1126 1126w,
-            https:{{ photo }}?w=1150 1150w,
-            https:{{ photo }}?w=1175 1175w,
-            https:{{ photo }}?w=1199 1199w,
-            https:{{ photo }}?w=1200&q=40 1200w,
-            https:{{ photo }}?w=1201 1201w,
-            https:{{ photo }}?w=1250 1250w,
-            https:{{ photo }}?w=1300 1300w,
-            https:{{ photo }}?w=1400 1400w,
-            https:{{ photo }}?w=1500 1500w,
-            https:{{ photo }}?w=1600&q=40 1600w,
-            https:{{ photo }}?w=1700 1700w,
-            https:{{ photo }}?w=2000 2000w"
-          sizes="(min-width: 768px) 800px, 400px"
-          src="https:{{ photo }}?w=400"
-          loading="lazy" />
+        <picture>
+          <source media="(max-width: 768px)" srcset="https:{{ photo }}?w=400 400w">
+          <source media="(min-width: 768px)" srcset="https:{{ photo }}?w=800 800w">
+          <img src="https:{{ photo }}?w=400">
+        </picture>
       </li>
     {% endfor %}
   </ul>
