@@ -52,29 +52,51 @@
     border-collapse: collapse;
     border-spacing: 0;
   }
+  /* End reset */
 
   ul {
     display: flex;
     flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  @media (min-aspect-ratio: 7 / 3) {
+    ul {
+      max-width: 150vh;
+    }
+  }
+
   ul::after {
     content: "";
     flex-grow: 10;
   }
 
   li {
-    height: 30vh;
+    height: 33vh;
     flex-grow: 1;
+  }
+
+  @media (min-aspect-ratio: 3 / 2) {
+    li {
+      height: 45vh;
+    }
   }
 
   img {
     max-height: 100%;
+    height: 100%; /* Force wide photos to fill their row */
     min-width: 100%;
     max-width: 100vw; /* Limit really wide photos */
     object-fit: cover;
     object-position: 50% 20%;
     vertical-align: bottom;
   }
+
+  body {
+    background-color: black;
+  }
+
   </style>
   <title>Test</title>
 </head>
@@ -82,11 +104,11 @@
   <ul>
     {% for photo in photos %}
       <li>
-        <img
-          srcset="https:{{ photo }}?w=400 400w"
-          sizes="400px"
-          src="https:{{ photo }}?w=400"
-          loading="lazy" />
+        <picture>
+          <source media="(max-width: 768px)" srcset="https:{{ photo }}?w=400 400w">
+          <source media="(min-width: 768px)" srcset="https:{{ photo }}?w=800 800w">
+          <img src="https:{{ photo }}?w=200">
+        </picture>
       </li>
     {% endfor %}
   </ul>

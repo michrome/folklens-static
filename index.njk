@@ -103,13 +103,13 @@
 <body>
   <ul>
     {% for photo in photos %}
-      <li>
+      <li>    
         <picture>
-          <source media="(max-width: 768px)" srcset="https:{{ photo }}?w=400 400w">
-          <source media="(min-width: 768px)" srcset="https:{{ photo }}?w=800 800w">
+          <source media="(max-width: 768px)" srcset="https://res.cloudinary.com/willowtree/image/fetch/w_400,f_auto,q_auto/https:{{ photo }} 400w">
+          <source media="(min-width: 768px)" srcset="https://res.cloudinary.com/willowtree/image/fetch/w_800,f_auto,q_auto/https:{{ photo }} 800w">
           <img src="https:{{ photo }}?w=200">
         </picture>
-      </li>
+        </li>
     {% endfor %}
   </ul>
 </body>
