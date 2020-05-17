@@ -10,7 +10,7 @@ module.exports = async function() {
     .getEntries({
       content_type: 'photo',
       order: '-fields.timeTaken',
-      limit: 30
+      limit: 50
     })
     .then(response => {
       const photos = response.items
@@ -21,7 +21,7 @@ module.exports = async function() {
           item.fields.image.fields.file &&
           item.fields.image.fields.file.url
       )
-      photoImageURLs = photosWithPublishedImage.map(item => item.fields.image.fields.file.url)
+      photoImageURLs = photosWithPublishedImage.map(item => `https:${item.fields.image.fields.file.url}`)
       return photoImageURLs
     })
     .catch(console.error)
