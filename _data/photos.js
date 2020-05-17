@@ -10,7 +10,7 @@ module.exports = async function() {
     .getEntries({
       content_type: 'photo',
       order: '-fields.timeTaken',
-      limit: 10
+      limit: 30
     })
     .then(response => {
       const photos = response.items

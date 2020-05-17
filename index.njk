@@ -105,9 +105,9 @@
     {% for photo in photos %}
       <li>
         <picture>
-          <source srcset="https://res.cloudinary.com/willowtree/image/fetch/w_800,f_auto,q_auto/https:{{ photo }} 800w" media="(min-width: 768px)">
-          <source srcset="https://res.cloudinary.com/willowtree/image/fetch/w_400,f_auto,q_auto,e_sepia/https:{{ photo }} 400w" media="(max-width: 768px)">
-          <img src="https://res.cloudinary.com/willowtree/image/fetch/w_200,f_auto,q_auto,e_grayscale/https:{{ photo }}" />
+          <source srcset="{{ photo }} 800w" media="(min-width: 768px)">
+          <source srcset="{{ photo }} 400w" media="(max-width: 768px)">
+          <img src="{{ photo }}" />
         </picture>
       </li>
     {% endfor %}
