@@ -13,7 +13,7 @@
         }
       }
 
-      img {
+      .mike, img {
         height: 100%;
         width: 100%;
         object-fit: contain;
@@ -34,6 +34,8 @@
         display: flex;
         overflow-x: scroll;
         scrollbar-width: none;
+
+        overflow-y: hidden;
       }
       #viewport::-webkit-scrollbar {
         display: none;
@@ -43,8 +45,20 @@
   </head>
   <body>
     <div id="viewport">
-      <img src="https://via.placeholder.com/400x600" />
-      <img src="https://via.placeholder.com/400x3000" />
+      
+      {% for photo in photos %}
+        <picture class="mike">
+          <source srcset="{{photo}}?w=768&q=70&fm=webp 768w" media="(min-width: 768px)" type="image/webp">
+          <source srcset="{{photo}}?w=768&q=70 768w" media="(min-width: 768px)" type="image/jpeg">
+
+          <source srcset="{{photo}}?w=375&q=70&fm=webp 375w" media="(min-width: 375px)" type="image/webp">
+          <source srcset="{{photo}}?w=375&q=70 375w" media="(min-width: 375px)" type="image/jpeg">
+          
+          <source srcset="{{photo}}?w=320&q=70&fm=webp 320w" type="image/webp">
+          <source srcset="{{photo}}?w=320&q=70 320w" type="image/jpeg">
+          <img src="{{ photo }}?w=320" loading="lazy" width="320">
+        </picture>
+      {% endfor %}
     </div>
   </body>
 </html>
