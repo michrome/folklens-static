@@ -1,3 +1,16 @@
+---
+pagination:
+  data: photos
+  size: 15
+css_break_points:
+  - 1440
+  - 1280
+  - 1024
+  - 768
+  - 414
+  - 375
+  - 320
+---
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +26,7 @@
         }
       }
 
-      .moment {
+      .moment, .paginationPanel {
         height: 100%;
         width: 100%;
         object-fit: contain;
@@ -44,20 +57,27 @@
     <title>Test</title>
   </head>
   <body>
-    <div id="viewport">
-      {% for photo in photos %}
-          <picture class="moment">
-            <source srcset="{{photo}}?w=768&q=70&fm=webp 768w" media="(min-width: 768px)" type="image/webp">
-            <source srcset="{{photo}}?w=768&q=70 768w" media="(min-width: 768px)" type="image/jpeg">
 
-            <source srcset="{{photo}}?w=375&q=70&fm=webp 375w" media="(min-width: 375px)" type="image/webp">
-            <source srcset="{{photo}}?w=375&q=70 375w" media="(min-width: 375px)" type="image/jpeg">
-            
-            <source srcset="{{photo}}?w=320&q=70&fm=webp 320w" type="image/webp">
-            <source srcset="{{photo}}?w=320&q=70 320w" type="image/jpeg">
+    <div id="viewport">
+      {% if pagination.href.previous %}
+        <div class="paginationPanel">
+          <a href="{{ pagination.href.previous }}#moment-{{ pagination.size }}">Load more</a>
+        </div>
+      {% endif %}
+      {% for photo in pagination.items %}
+          <picture class="moment" id="moment-{{ loop.index }}">
+            {% for w in css_break_points %}
+              <source srcset="{{photo}}?w={{w}}&q=70&fm=webp {{w}}w" media="(min-width: {{w}}px)" type="image/webp">
+              <source srcset="{{photo}}?w={{w}}&q=70 {{w}}w" media="(min-width: {{w}}px)" type="image/jpeg">
+            {% endfor %}
             <img class="moment" src="{{ photo }}?w=320" loading="lazy" width="320">
           </picture>
       {% endfor %}
+      {% if pagination.href.next %}
+        <div class="paginationPanel">
+          <a href="{{ pagination.href.next }}#moment-1">Load more</a>
+        </div>
+      {% endif %}
     </div>
   </body>
 </html>
