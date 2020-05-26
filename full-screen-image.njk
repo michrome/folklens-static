@@ -13,7 +13,7 @@
         }
       }
 
-      .mike, img {
+      .moment {
         height: 100%;
         width: 100%;
         object-fit: contain;
@@ -45,19 +45,18 @@
   </head>
   <body>
     <div id="viewport">
-      
       {% for photo in photos %}
-        <picture class="mike">
-          <source srcset="{{photo}}?w=768&q=70&fm=webp 768w" media="(min-width: 768px)" type="image/webp">
-          <source srcset="{{photo}}?w=768&q=70 768w" media="(min-width: 768px)" type="image/jpeg">
+          <picture class="moment">
+            <source srcset="{{photo}}?w=768&q=70&fm=webp 768w" media="(min-width: 768px)" type="image/webp">
+            <source srcset="{{photo}}?w=768&q=70 768w" media="(min-width: 768px)" type="image/jpeg">
 
-          <source srcset="{{photo}}?w=375&q=70&fm=webp 375w" media="(min-width: 375px)" type="image/webp">
-          <source srcset="{{photo}}?w=375&q=70 375w" media="(min-width: 375px)" type="image/jpeg">
-          
-          <source srcset="{{photo}}?w=320&q=70&fm=webp 320w" type="image/webp">
-          <source srcset="{{photo}}?w=320&q=70 320w" type="image/jpeg">
-          <img src="{{ photo }}?w=320" loading="lazy" width="320">
-        </picture>
+            <source srcset="{{photo}}?w=375&q=70&fm=webp 375w" media="(min-width: 375px)" type="image/webp">
+            <source srcset="{{photo}}?w=375&q=70 375w" media="(min-width: 375px)" type="image/jpeg">
+            
+            <source srcset="{{photo}}?w=320&q=70&fm=webp 320w" type="image/webp">
+            <source srcset="{{photo}}?w=320&q=70 320w" type="image/jpeg">
+            <img class="moment" src="{{ photo }}?w=320" loading="lazy" width="320">
+          </picture>
       {% endfor %}
     </div>
   </body>
