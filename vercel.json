@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://folklens.herokuapp.com"
+      "destination": "https://www.folklens.com"
     }
   ]
 }
